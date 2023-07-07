@@ -99,36 +99,63 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
 
         if (directions.diagonal) {
             outputs.leftStickX = 128 + (directions.x * 70);
-            outputs.leftStickY = 128 + (directions.y * 34);
-
-            if (inputs.b) {
-                outputs.leftStickX = 128 + (directions.x * 85);
-                outputs.leftStickY = 128 + (directions.y * 31);
-            }
+            outputs.leftStickY = 128 + (directions.y * 60);
 
             if (inputs.r) {
-                outputs.leftStickX = 128 + (directions.x * 82);
-                outputs.leftStickY = 128 + (directions.y * 35);
+                outputs.leftStickX = 128 + (directions.x * 93);
+                outputs.leftStickY = 128 + (directions.y * 28);
+            }
+            
+            if (inputs.l) {
+                outputs.leftStickX = 128 + (directions.x * 93);
+                outputs.leftStickY = 128 + (directions.y * 28);
             }
 
             if (inputs.c_up) {
-                outputs.leftStickX = 128 + (directions.x * 77);
-                outputs.leftStickY = 128 + (directions.y * 55);
+                outputs.leftStickX = 128 + (directions.x * 44);
+                outputs.leftStickY = 128 + (directions.y * 30);
             }
 
             if (inputs.c_down) {
-                outputs.leftStickX = 128 + (directions.x * 82);
-                outputs.leftStickY = 128 + (directions.y * 36);
+                outputs.leftStickX = 128 + (directions.x * 66);
+                outputs.leftStickY = 128 + (directions.y * 28);
             }
 
             if (inputs.c_left) {
-                outputs.leftStickX = 128 + (directions.x * 84);
-                outputs.leftStickY = 128 + (directions.y * 50);
+                outputs.leftStickX = 128 + (directions.x * 53);
+                outputs.leftStickY = 128 + (directions.y * 29);
             }
 
             if (inputs.c_right) {
                 outputs.leftStickX = 128 + (directions.x * 72);
                 outputs.leftStickY = 128 + (directions.y * 61);
+            }         
+            
+            /* Extended Up B Angles */
+            if (inputs.b) {
+                
+                outputs.leftStickX = 128 + (directions.x * 93);
+                outputs.leftStickY = 128 + (directions.y * 28);
+                
+                if (inputs.c_down) {
+                    outputs.leftStickX = 128 + (directions.x * 88);
+                    outputs.leftStickY = 128 + (directions.y * 36);
+                }
+        
+                if (inputs.c_left) {
+                    outputs.leftStickX = 128 + (directions.x * 84);
+                    outputs.leftStickY = 128 + (directions.y * 45);
+                }
+                
+                if (inputs.c_up) {
+                    outputs.leftStickX = 128 + (directions.x * 80);
+                    outputs.leftStickY = 128 + (directions.y * 55);
+                }
+                
+                if (inputs.c_right) {
+                    outputs.leftStickX = 128 + (directions.x * 42);
+                    outputs.leftStickY = 128 + (directions.y * 34);
+                }
             }
         }
     }
@@ -143,36 +170,58 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
 
         if (directions.diagonal) {
             outputs.leftStickX = 128 + (directions.x * 28);
-            outputs.leftStickY = 128 + (directions.y * 58);
-
-            if (inputs.b) {
-                outputs.leftStickX = 128 + (directions.x * 28);
-                outputs.leftStickY = 128 + (directions.y * 85);
-            }
+            outputs.leftStickY = 128 + (directions.y * 62);
 
             if (inputs.r) {
-                outputs.leftStickX = 128 + (directions.x * 51);
-                outputs.leftStickY = 128 + (directions.y * 82);
-            }
-
-            if (inputs.c_up) {
-                outputs.leftStickX = 128 + (directions.x * 55);
-                outputs.leftStickY = 128 + (directions.y * 77);
-            }
-
-            if (inputs.c_down) {
-                outputs.leftStickX = 128 + (directions.x * 34);
-                outputs.leftStickY = 128 + (directions.y * 82);
-            }
-
-            if (inputs.c_left) {
-                outputs.leftStickX = 128 + (directions.x * 40);
+                outputs.leftStickX = 128 + (directions.x * 45);
                 outputs.leftStickY = 128 + (directions.y * 84);
             }
 
+            if (inputs.c_up) {
+                outputs.leftStickX = 128 + (directions.x * 30);
+                outputs.leftStickY = 128 + (directions.y * 44);
+            }
+
+            if (inputs.c_down) {
+                outputs.leftStickX = 128 + (directions.x * 28);
+                outputs.leftStickY = 128 + (directions.y * 66);
+            }
+
+            if (inputs.c_left) {
+                outputs.leftStickX = 128 + (directions.x * 29);
+                outputs.leftStickY = 128 + (directions.y * 53);
+            }
+
             if (inputs.c_right) {
-                outputs.leftStickX = 128 + (directions.x * 62);
-                outputs.leftStickY = 128 + (directions.y * 72);
+                outputs.leftStickX = 128 + (directions.x * 34);
+                outputs.leftStickY = 128 + (directions.y * 42);
+            } 
+            
+            /* Extended Up B Angles */
+            if (inputs.b) {
+                // 67.0362 - 3875 9125 = 31 73
+                outputs.leftStickX = 128 + (directions.x * 28);
+                outputs.leftStickY = 128 + (directions.y * 93);
+                // 62.62896 - 4500 8750 (62.8) = 36 70
+                if (inputs.c_down) {
+                    outputs.leftStickX = 128 + (directions.x * 36);
+                    outputs.leftStickY = 128 + (directions.y * 88);
+                }
+                // 58.22172 - 5250 8500 (58.3) = 42 68
+                if (inputs.c_left) {
+                    outputs.leftStickX = 128 + (directions.x * 45);
+                    outputs.leftStickY = 128 + (directions.y * 84);
+                }
+                // 53.81448 - 5875 8000 (53.7) = 47 64
+                if (inputs.c_up) {
+                    outputs.leftStickX = 128 + (directions.x * 55);
+                    outputs.leftStickY = 128 + (directions.y * 80);
+                }
+                // 49.40724 - 5875 7125 (50.49) = 47 57
+                if (inputs.c_right) {
+                    outputs.leftStickX = 128 + (directions.x * 63);
+                    outputs.leftStickY = 128 + (directions.y * 78);
+                }
             }
         }
     }
