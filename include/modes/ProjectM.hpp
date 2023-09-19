@@ -6,8 +6,8 @@
 #include "core/state.hpp"
 
 typedef struct {
-    bool true_z_press = false;
-    bool ledgedash_max_jump_traj = true;
+    bool true_z_press = true;
+    bool ledgedash_max_jump_traj = false;
 } ProjectMOptions;
 
 class ProjectM : public ControllerMode {

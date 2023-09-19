@@ -4,13 +4,13 @@
 #define ANALOG_STICK_NEUTRAL 128
 #define ANALOG_STICK_MAX 228
 
-ProjectM::ProjectM(socd::SocdType socd_type, ProjectMOptions options) : ControllerMode(socd_type) {
+ProjectM::ProjectM(socd::SocdType socd_type, ProjectMOptions options) {
     _socd_pair_count = 4;
     _socd_pairs = new socd::SocdPair[_socd_pair_count]{
-        socd::SocdPair{&InputState::left,    &InputState::right  },
-        socd::SocdPair{ &InputState::down,   &InputState::up     },
-        socd::SocdPair{ &InputState::c_left, &InputState::c_right},
-        socd::SocdPair{ &InputState::c_down, &InputState::c_up   },
+        socd::SocdPair{&InputState::left,    &InputState::right,   socd_type},
+        socd::SocdPair{ &InputState::down,   &InputState::up,      socd_type},
+        socd::SocdPair{ &InputState::c_left, &InputState::c_right, socd_type},
+        socd::SocdPair{ &InputState::c_down, &InputState::c_up,    socd_type},
     };
 
     _options = options;
@@ -77,7 +77,7 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
 
     bool shield_button_pressed = inputs.l || inputs.lightshield;
 
-    if (directions.diagonal) {
+     if (directions.diagonal) {
         if (directions.y == 1) {
             outputs.leftStickX = 128 + (directions.x * 83);
             outputs.leftStickY = 128 + (directions.y * 93);
@@ -112,8 +112,8 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
             }
 
             if (inputs.c_up) {
-                outputs.leftStickX = 128 + (directions.x * 44);
-                outputs.leftStickY = 128 + (directions.y * 30);
+                outputs.leftStickX = 128 + (directions.x * 83);
+                outputs.leftStickY = 128 + (directions.y * 55);
             }
 
             if (inputs.c_down) {
@@ -127,8 +127,8 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
             }
 
             if (inputs.c_right) {
-                outputs.leftStickX = 128 + (directions.x * 72);
-                outputs.leftStickY = 128 + (directions.y * 61);
+                outputs.leftStickX = 128 + (directions.x * 77);
+                outputs.leftStickY = 128 + (directions.y * 64);
             }         
             
             /* Extended Up B Angles */
@@ -148,13 +148,13 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
                 }
                 
                 if (inputs.c_up) {
-                    outputs.leftStickX = 128 + (directions.x * 80);
+                    outputs.leftStickX = 128 + (directions.x * 83);
                     outputs.leftStickY = 128 + (directions.y * 55);
                 }
                 
                 if (inputs.c_right) {
-                    outputs.leftStickX = 128 + (directions.x * 42);
-                    outputs.leftStickY = 128 + (directions.y * 34);
+                    outputs.leftStickX = 128 + (directions.x * 77);
+                    outputs.leftStickY = 128 + (directions.y * 64);
                 }
             }
         }
@@ -178,8 +178,8 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
             }
 
             if (inputs.c_up) {
-                outputs.leftStickX = 128 + (directions.x * 30);
-                outputs.leftStickY = 128 + (directions.y * 44);
+                outputs.leftStickX = 128 + (directions.x * 55);
+                outputs.leftStickY = 128 + (directions.y * 83);
             }
 
             if (inputs.c_down) {
@@ -193,8 +193,8 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
             }
 
             if (inputs.c_right) {
-                outputs.leftStickX = 128 + (directions.x * 34);
-                outputs.leftStickY = 128 + (directions.y * 42);
+                outputs.leftStickX = 128 + (directions.x * 64);
+                outputs.leftStickY = 128 + (directions.y * 77);
             } 
             
             /* Extended Up B Angles */
@@ -215,12 +215,12 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
                 // 53.81448 - 5875 8000 (53.7) = 47 64
                 if (inputs.c_up) {
                     outputs.leftStickX = 128 + (directions.x * 55);
-                    outputs.leftStickY = 128 + (directions.y * 80);
+                    outputs.leftStickY = 128 + (directions.y * 83);
                 }
                 // 49.40724 - 5875 7125 (50.49) = 47 57
                 if (inputs.c_right) {
-                    outputs.leftStickX = 128 + (directions.x * 63);
-                    outputs.leftStickY = 128 + (directions.y * 78);
+                    outputs.leftStickX = 128 + (directions.x * 64);
+                    outputs.leftStickY = 128 + (directions.y * 77);
                 }
             }
         }
@@ -236,12 +236,6 @@ void ProjectM::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
         outputs.rightStickY = 128 + (directions.cy * 98);
     }
 
-    // Horizontal SOCD overrides X-axis modifiers (for ledgedash maximum jump
-    // trajectory).
-    if (_options.ledgedash_max_jump_traj && _horizontal_socd && !directions.vertical &&
-        !shield_button_pressed) {
-        outputs.leftStickX = 128 + (directions.x * 100);
-    }
 
     if (inputs.lightshield) {
         outputs.triggerRAnalog = 49;

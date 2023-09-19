@@ -6,7 +6,7 @@
 #include "core/state.hpp"
 
 typedef struct {
-    bool crouch_walk_os = false;
+    bool crouch_walk_os = true;
 } Melee20ButtonOptions;
 
 class Melee20Button : public ControllerMode {
